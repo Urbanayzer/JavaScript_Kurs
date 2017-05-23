@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>LOTTO 6 aus 45</title>
+    <script src="jquery-3.2.1.min.js"></script>
+    <script>
+        $( document ).ready( function() {
+            $( '#page2' ).hide();
+            
+            for ( var i = 1; i <= 12; i++ ) {
+                $( '#page1 select' ).append(
+                $( '<option>' ).attr('value',i).html( i )
+                );
+                
+            }
+            
+            $( 'button' ).click( function() {
+                $( '#page1,#page2' ).toggle();
+            });
+            
+            $( '#page1 button' ).click( function() {
+              var anzahl = $( '#page1 select' ).val();
+                
+                var table = $( '<table border="1">' );
+                var tr = $( '<tr>' );
+                var td = $( '<td>' );
+                
+                for (var i = 1; i<=45; i++) {
+                    if ( i % 6 == 1) {
+                    tr = $ ('<tr>');
+                    table.append(tr);
+                    }
+                    td = $('<td>').html(i);
+                    tr.append(td);
+                }
+                
+                $('#tipps').append(table);
+    
+            });
+            
+        });
+    </script>
+    <style>
+        
+        body > div { border:1px solid #000; padding:20px; margin:20px; width:500px; }
+       /* #page2 { display:none; } */
+        #page1 { /*visibility: hidden;*/ /*opacity:0,5;*/ }
+    </style>
+</head>
+<body>
+    <div id="page1">
+        <h1>Eingabe</h1>
+        <select></select>
+        <button id='b1'>Zur Ausgabe</button>
+    </div>
+    <div id="page2">
+        <h1>Ausgabe</h1>
+        <div id="tipps"></div>
+        <button id='b2'>Zur Eingabe</button>
+    
+    </div>
+    
+</body>
+</html>
